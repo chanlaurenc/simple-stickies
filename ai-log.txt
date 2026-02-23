@@ -72,6 +72,24 @@ Commit 4 (Add localStorage persistence)
                 deep: true
             }
         }
-    WHAT I USED / CHANGED: Used the JSON.stringify / JSON.parse pattern for persistence and adapted it to use my existing storageKey ("sticky-notes-simple"). 
+    WHAT I USED / CHANGED: Used the JSON.stringify / JSON.parse pattern for persistence and adapted it to use my existing storageKey. 
     Added loadFromStorage() inside mounted() and implemented a deep watcher so editing stickie.text auto-saves. 
     Tested add, edit, delete, and refresh to confirm persistence works correctly.
+
+Commit 5 (Clear all and polish)
+    PROMPT: For Commit 5, I need to implement clearAll() in my Vue sticky notes app. It must use confirm("Delete all notes?"), clear the stickies array, and remove the localStorage item using my storageKey. What is the correct way to structure this method?
+    RESPONSE:
+        Use confirm("Delete all notes?") to ask the user before deleting. 
+        If the user confirms, clear the stickies array and remove the localStorage item.
+
+        Example:
+
+        clearAll() {
+            const confirmed = confirm("Delete all notes?");
+
+            if (confirmed) {
+                this.stickies = [];
+                localStorage.removeItem(this.storageKey);
+            }
+        }
+    WHAT I USED/CHANGED: Implemented clearAll() using confirm and removed the item using my existing storageKey. Tested by adding notes, refreshing to confirm persistence, then clearing and refreshing again to confirm storage was removed.
