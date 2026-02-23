@@ -19,7 +19,7 @@ watch: {
 ```
 **Explain what deep: true does and what would stop working if we removed it.**
 
-`deep: true` tells Vue to watch for changes inside objects in the stickies array, not just when the entire array is replaced. When typing in a note, we are changing stickie.text. This is a nested property inside the stickies array. Without `deep: true`, Vue would only detect changes if we replaced the entire stickies array. Editing note text would not trigger saveToStorage(). If we removed `deep: true`, typing inside the textarea would on longer auto save.
+`deep: true` tells Vue to watch for changes inside objects in the stickies array, not just when the entire array is replaced. When typing in a note, we are changing stickie.text. This is a nested property inside the stickies array. Without `deep: true`, Vue would only detect changes if we replaced the entire stickies array. Editing note text would not trigger saveToStorage(). If we removed `deep: true`, typing inside the textarea would no longer auto-save.
 
 ## Q3 - localStorage
 1. What type of data does localStorage store?
