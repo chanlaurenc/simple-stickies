@@ -1,0 +1,12 @@
+Commit 2 (Render Notes)
+    PROMPT: For Commit 2, I need to temporarily hard-code two notes in mounted() to test v-for and v-model. What is the correct object structure for each note according to the assignment?
+    RESPONSE: 
+        Each note must be an object with this structure:
+        { id: String (or Number), text: String }
+
+        Example:
+        this.stickies = [
+        { id: 1, text: "Test note 1" },
+        { id: 2, text: "Another note" }
+        ];
+    WHAT I USED/CHANGED: Used the required object structure. Inserted into mounted() for testing.
