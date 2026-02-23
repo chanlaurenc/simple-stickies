@@ -34,3 +34,44 @@ Commit 3 (Add and delete notes)
         Example:
         this.stickies = this.stickies.filter(s => s.id !== id);
     WHAT I USED/CHANGED: Used the UUID fallback logic and filter + reassignment pattern. Wrote the full addStickie() and deleteStickie() methods and tested adding and deleting multiple notes.
+
+Commit 4 (Add localStorage persistence)
+    PROMPT: For Commit 4, I need to implement saveToStorage() and loadFromStorage() for my Vue sticky notes app and add a deep watcher so edits auto-save. What should those methods look like using JSON.stringify / JSON.parse? 
+    And how should the watcher + mounted() be set up?
+    RESPONSE: 
+        Use localStorage.setItem with JSON.stringify to save the stickies array, and localStorage.getItem with JSON.parse to load it back.
+
+        Example:
+        saveToStorage() {
+            localStorage.setItem(this.storageKey, JSON.stringify(this.stickies));
+        }
+
+        loadFromStorage() {
+            const stored = localStorage.getItem(this.storageKey);
+
+            if (stored) {
+                this.stickies = JSON.parse(stored);
+            } else {
+                this.stickies = [];
+            }
+        }
+
+        Call loadFromStorage() in mounted():
+
+        mounted() {
+            this.loadFromStorage();
+        }
+
+        Add a watcher on stickies with deep: true so changes inside each note (like stickie.text) trigger saving automatically:
+
+        watch: {
+            stickies: {
+                handler() {
+                this.saveToStorage();
+                },
+                deep: true
+            }
+        }
+    WHAT I USED / CHANGED: Used the JSON.stringify / JSON.parse pattern for persistence and adapted it to use my existing storageKey ("sticky-notes-simple"). 
+    Added loadFromStorage() inside mounted() and implemented a deep watcher so editing stickie.text auto-saves. 
+    Tested add, edit, delete, and refresh to confirm persistence works correctly.
