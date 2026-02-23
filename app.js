@@ -30,10 +30,13 @@ Vue.createApp({
         //
         // In Commit 4:
         // - Replace this with a call to loadFromStorage().
+        
+        /* REMOVE FOR COMMIT 3 TASK
         this.stickies = [
             { id: 1, text: "This is a test note" },
             { id: 2, text: "Another note to show it works" }
-        ];
+        ]; 
+        */
     },
 
     methods: {
@@ -52,6 +55,19 @@ Vue.createApp({
             // For id:
             // - Use crypto.randomUUID() if available
             // - Otherwise use a fallback (Date.now() + Math.random())
+            let id;
+
+            if(crypto && crypto.randomUUID) {
+                id = crypto.randomUUID();
+            }
+            else {
+                id = String(Date.now() + Math.random());
+            }
+            
+            this.stickies.push({
+                id: id,
+                text: ""
+            });
         },
 
         deleteStickie(id) {
@@ -60,6 +76,7 @@ Vue.createApp({
             //
             // Use Array.filter()
             // Reassign the result back to this.stickies
+            this.stickies = this.stickies.filter(s => s.id !== id);
         },
 
         // ================================
