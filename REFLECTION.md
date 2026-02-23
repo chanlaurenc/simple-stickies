@@ -44,15 +44,15 @@ deleteStickie(id) {
 **Explain:**
 What does `.filter()` return?
 
-    `.filter()` returns a new array containing only the items that pass the condition.
+`.filter()` returns a new array containing only the items that pass the condition.
 
 Why assign the result back to `this.stickies`?
 
-    We assign the result back to `this.stickies` because Vue reactivity detects when the array reference changes.
+We assign the result back to `this.stickies` because Vue reactivity detects when the array reference changes.
 
 Why `!== and not ===?`
 
-    We use `s.id !== id` because we want to keep all notes except the one that matches the given `id`. If we used `===`, we would keep only the matching note instead of deleting it.
+We use `s.id !== id` because we want to keep all notes except the one that matches the given `id`. If we used `===`, we would keep only the matching note instead of deleting it.
 
 **Hint:**
 `.filter()` returns a new array that only contains the items that pass a condition.
@@ -62,4 +62,4 @@ We use `s.id !== id` so we keep all notes except the one we want to delete.
 Why is saving implemented in a separate method (`saveToStorage` ) instead of writing localStorage
 code directly in the watcher?
 
-    Saving is implemented in a separate method instead of writing localStorage code directly in the watcher to keep the code organized and reusable. It separates concerns (watching vs saving logic) and makes the watcher clearner and easier to read. If we ever needed to save another method, we could just call saveToStorage() again. This makes the app more maintainable and easier to understand.
+Saving is implemented in a separate method instead of writing localStorage code directly in the watcher to keep the code organized and reusable. It separates concerns (watching vs saving logic) and makes the watcher clearner and easier to read. If we ever needed to save another method, we could just call saveToStorage() again. This makes the app more maintainable and easier to understand.
