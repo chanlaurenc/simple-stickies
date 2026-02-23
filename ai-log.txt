@@ -10,3 +10,27 @@ Commit 2 (Render Notes)
         { id: 2, text: "Another note" }
         ];
     WHAT I USED/CHANGED: Used the required object structure. Inserted into mounted() for testing.
+
+Commit 3 (Add and delete notes)
+    PROMPT: For Commit 3, I need to implement addStickie() and deleteStickie(id). How should I generate a unique id with a fallback if crypto.randomUUID() is not available?
+    Why do we need to use filter() with reassignment when deleting in Vue?
+    RESPONSE:
+        To generate a unique id, use crypto.randomUUID() if it exists. 
+        If it is not available, use a fallback such as String(Date.now() + Math.random()).
+
+        Example:
+        let id;
+
+        if (crypto && crypto.randomUUID) {
+        id = crypto.randomUUID();
+        } else {
+        id = String(Date.now() + Math.random());
+        }
+
+        For deleting:
+        Use Array.filter() to return a new array that excludes the matching id.
+        Reassign the result back to the array so Vue reactivity detects the change.
+
+        Example:
+        this.stickies = this.stickies.filter(s => s.id !== id);
+    WHAT I USED/CHANGED: Used the UUID fallback logic and filter + reassignment pattern. Wrote the full addStickie() and deleteStickie() methods and tested adding and deleting multiple notes.
